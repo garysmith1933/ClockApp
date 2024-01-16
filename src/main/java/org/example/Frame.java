@@ -20,10 +20,23 @@ public class Frame extends JFrame {
 
         timeFormat = new SimpleDateFormat("hh:mm:ss a");
         timeLabel = new JLabel();
-        time = timeFormat.format(Calendar.getInstance().getTime());
-        timeLabel.setText(time);
 
         this.add(timeLabel);
         this.setVisible(true);
+
+        setTime();
+    }
+
+    public void setTime() {
+        while(true) {
+            time = timeFormat.format(Calendar.getInstance().getTime());
+            timeLabel.setText(time);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
